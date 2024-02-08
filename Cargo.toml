@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 cortex-m-rt = "0.7"
+lsm303agr = "1.0.0"
 microbit-v2 = "0.13.0"
 rtt-target = "0.4"
 

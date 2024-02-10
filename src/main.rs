@@ -12,12 +12,32 @@ use microbit::{
 use panic_rtt_target as _;
 use rtt_target::{rprintln, rtt_init_print};
 
+fn update_board(image: &mut [[u8; 5]; 5]) {
+    *image = [
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+    ];
+}
+
+fn reset_board(image: &mut [[u8; 5]; 5]) {
+    *image = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+    ];
+}
+
 #[entry]
 fn main() -> ! {
     rtt_init_print!();
     let board = Board::take().unwrap();
     let i2c = twim::Twim::new(board.TWIM0, board.i2c_internal.into(), FREQUENCY_A::K100);
-    
+
     let mut timer = Timer::new(board.TIMER0);
 
     let mut sensor = Lsm303agr::new_with_i2c(i2c);
@@ -31,15 +51,10 @@ fn main() -> ! {
         )
         .unwrap();
 
-        let pins = board.display_pins;
-        let mut image = [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-        ];
-    
+    let pins = board.display_pins;
+    let mut image = [[0; 5]; 5];
+    reset_board(&mut image);
+
     let mut display = Display::new(pins);
     loop {
         rprintln!("showing");

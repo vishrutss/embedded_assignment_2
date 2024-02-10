@@ -62,7 +62,7 @@ dependencies = [
  "bare-metal 0.2.5",
  "bitfield",
  "critical-section 1.1.1",
- "embedded-hal 0.2.7",
+ "embedded-hal",
  "volatile-register",
 ]
 
@@ -128,12 +128,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "embedded-hal"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "361a90feb7004eca4019fb28352a9465666b24f840f5c3cddf0ff13920590b89"
-
-[[package]]
 name = "embedded-storage"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -163,12 +157,12 @@ dependencies = [
 
 [[package]]
 name = "lsm303agr"
-version = "1.0.0"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d4a03acd01d27c9ca96ba8205760673a23ba1914d85cc00e92a6a05963d5fe9b"
+checksum = "82d672443f0535384ea86fff40c50156c5fae3fe0446242edeb9ff993b63e0dc"
 dependencies = [
  "bitflags",
- "embedded-hal 1.0.0",
+ "embedded-hal",
  "nb 1.1.0",
 ]
 
@@ -190,7 +184,7 @@ version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "45651d001be4281a6f4536c30f3d8522f231bc56fd58d5baf2c630f565d31256"
 dependencies = [
- "embedded-hal 0.2.7",
+ "embedded-hal",
  "nrf52833-hal",
  "tiny-led-matrix",
 ]
@@ -229,7 +223,7 @@ dependencies = [
  "cfg-if",
  "cortex-m",
  "embedded-dma",
- "embedded-hal 0.2.7",
+ "embedded-hal",
  "embedded-storage",
  "fixed",
  "nb 1.1.0",
@@ -258,7 +252,7 @@ version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "87f76d269c9a239ffe24edaa5ee0972b102c04e898b464e3e9a12ab0eacd5f76"
 dependencies = [
- "embedded-hal 0.2.7",
+ "embedded-hal",
  "nrf-hal-common",
  "nrf52833-pac",
 ]

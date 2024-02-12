@@ -13,6 +13,9 @@ rtt-target = "0.4"
 version = "0.1"
 features = ["cortex-m"]
 
+[dependencies.critical-section-lock-mut]
+git = "https://github.com/pdx-cs-rust-embedded/critical-section-lock-mut"
+
 # This works around old versions in the `microbit-v2`
 # crate. You don't have to use this crate, just linking
 # against it is sufficient.

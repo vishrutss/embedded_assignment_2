@@ -86,12 +86,13 @@ fn main() -> ! {
         let status = sensor.accel_status().unwrap();
         if status.xyz_new_data() {
             let data = sensor.acceleration().unwrap();
-            let x: f64 = (data.x_mg() / 1000).into();
-            let y: f64 = (data.y_mg() / 1000).into();
-            let z: f64 = (data.z_mg() / 1000).into();
-            let magnitude: f64 = (x * x) + (y * y) + (z * z);
-            rprintln!("{:?}", magnitude);
-            if magnitude > 0.25 {
+            let x: f32 = data.x_mg() as f32 / 1000f32;
+            let y: f32 = data.y_mg() as f32 / 1000f32;
+            let z: f32 = data.z_mg() as f32 / 1000f32;
+            let magnitude: f32 = (x * x) + (y * y) + (z * z);
+            if magnitude < 0.25 {
+                rprintln!("{:?}, {:?}, {:?}", data.x_mg(), data.y_mg(), data.z_mg());
+                rprintln!("{:?}", magnitude);
                 rprintln!("updating");
                 make_sound(&mut speaker, &mut delay);
                 update_board(&mut image);

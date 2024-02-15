@@ -38,10 +38,12 @@ fn reset_board(image: &mut GreyscaleImage) {
 }
 
 fn make_sound(speaker: &mut SPEAKER, delay: &mut Delay) {
-    speaker.set_high().unwrap();
-    delay.delay_us(500u16);
-    speaker.set_low().unwrap();
-    delay.delay_us(500u16);
+    for _ in 0..100 {
+        speaker.set_high().unwrap();
+        delay.delay_us(500u16);
+        speaker.set_low().unwrap();
+        delay.delay_us(500u16);
+    }
 }
 
 #[entry]

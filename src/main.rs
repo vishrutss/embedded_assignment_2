@@ -38,7 +38,7 @@ fn reset_board(image: &mut GreyscaleImage) {
 }
 
 fn make_sound(speaker: &mut SPEAKER, delay: &mut Delay) {
-    for _ in 0..100 {
+    for _ in 0..150 {
         speaker.set_high().unwrap();
         delay.delay_us(500u16);
         speaker.set_low().unwrap();
@@ -93,11 +93,10 @@ fn main() -> ! {
             let z: f32 = data.z_mg() as f32 / 1000f32;
             let magnitude: f32 = (x * x) + (y * y) + (z * z);
             if magnitude < 0.25 {
-                rprintln!("{:?}, {:?}, {:?}", data.x_mg(), data.y_mg(), data.z_mg());
-                rprintln!("{:?}", magnitude);
-                rprintln!("updating");
-                make_sound(&mut speaker, &mut delay);
+                rprintln!("Falling");
                 update_board(&mut image);
+                DISPLAY.with_lock(|display| display.show(&image));
+                make_sound(&mut speaker, &mut delay);
             } else {
                 reset_board(&mut image);
             }
